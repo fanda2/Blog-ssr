@@ -1,6 +1,6 @@
 <template>
   <div>
-    这是一个表格组件
+   
   </div>
 </template>
 <script>

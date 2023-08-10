@@ -1,12 +1,111 @@
 <template>
-   <div>
-     这是一个主页
-     <Table/>
+   <div class="container">
+    <div class="header-box">
+      <div class="inner-header wrap1">
+        <div class="logo-left">
+          <img src="../static/img/logo.png" alt="logo">
+        </div>
+         <div class="right-menu">
+          <ul class="menu-clumn">
+            <li>主页</li>
+            <li>关于</li>
+            <li>工具</li>
+          </ul>
+          <div class="logo-box">登录</div>
+         </div>     
+      </div>
+    </div>
+    <div class="main-box">
+      <div class="inner-main wrap1"></div>
+    </div>
+    <div class="footer-box">
+      <div class="inner-footer wrap1"></div>
+    </div>
    </div>
 </template>
 
 <script>
 export default {
-  name: 'IndexPage'
+  name: 'IndexPage',
+  data(){
+    return{
+
+    }
+  },
+  mounted(){
+
+  },
+  created(){
+
+  },
+  methods:{
+
+  }
 }
 </script>
+<style scoped>
+/* 顶部菜单 */
+.header-box{
+  width: 100%;
+  height: 60px;
+  background: #333;
+}
+.inner-header{
+  display: flex;
+  height: 60px;
+  justify-content: space-between;
+}
+.logo-left{
+  width: 200px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo-left img{
+  height: 80%;
+  object-fit: cover;
+}
+
+.right-menu{
+  /* width: 400px; */
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+.right-menu .logo-box{
+  height: 60px;
+  line-height: 60px;
+  padding: 0 40px;
+  cursor: pointer;
+}
+.right-menu ul,.right-menu li{
+  list-style: none;
+}
+.right-menu ul{
+  display: flex;
+}
+.right-menu li{
+  display: block;
+  padding: 0 20px;
+  height: 60px;
+  line-height: 60px;
+}
+/* 主题内容 */
+.main-box{
+  width: 100%;
+  min-height: calc(100vh - 120px);
+  background: rgb(241, 241, 241);
+}
+
+/* 底部内容 */
+.footer-box{
+  height: 60px;
+  width: 100%;
+  background: #333;
+  border-top: 1px solid #ccc;
+}
+
+
+</style>
