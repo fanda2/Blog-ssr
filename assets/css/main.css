@@ -17,3 +17,19 @@ body,html{
   min-width:1000px;
   margin: 0 auto;
 }
+
+/* 文章主体页面分为左右两个部分, 以page-content作为包裹 */
+.page-content{
+  width: 92%;
+  margin: 10px auto;
+  display: flex;
+  justify-content: space-between;
+}
+.page-content .page-left{
+  width: 70%;
+  min-width: 750px;
+}
+.page-content .page-right{
+  width: 26%;
+  min-width: 300px;
+}

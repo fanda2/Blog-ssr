@@ -1,7 +1,11 @@
 <template>
-<div class="container">
-  首页内容
-  <div class="content-box" @click="goDetail"></div>
+<div class="page-content">
+  <div class="page-left">
+    <Table/>
+  </div>
+  <div class="page-right">
+    <RightText/>
+  </div>
 </div>
 </template>
 
@@ -25,9 +29,12 @@ export default {
 };
 </script>
 <style scoped>
-.content-box{
-  width: 200px;
-  height: 200px;
-  background: orange;
-}
+ /* .page-left{
+   background: rebeccapurple;
+   height: 200px;
+ }
+ .page-right{
+   background: pink;
+   height: 200px;
+ } */
 </style>
