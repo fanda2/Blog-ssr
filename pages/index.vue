@@ -1,5 +1,6 @@
 <template>
    <div class="container">
+     <!-- 导航栏 -->
     <div class="header-box">
       <div class="inner-header wrap1">
         <div class="logo-left">
@@ -15,13 +16,19 @@
          </div>     
       </div>
     </div>
+    <!-- 主体页面部分 -->
     <div class="main-box">
       <div class="inner-main wrap1">
         <nuxt-child></nuxt-child>
       </div>
     </div>
+    <!-- 底部footer -->
     <div class="footer-box">
-      <div class="inner-footer wrap1"></div>
+      <div class="inner-footer wrap1">
+        <p>copyRight &copy; fanda</p>
+        <p>2003All</p>
+        <p>本站使用vue+nuxt.js实现服务端渲染</p>
+      </div>
     </div>
    </div>
 </template>
@@ -107,6 +114,12 @@ export default {
   width: 100%;
   background: #333;
   border-top: 1px solid #ccc;
+  color: #fff;
+  font-size: 12px;
+}
+.footer-box p{
+  text-align:center;
+  padding: 2px 10px;
 }
 
 .link-btn{

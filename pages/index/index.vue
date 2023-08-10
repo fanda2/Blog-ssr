@@ -1,9 +1,7 @@
 <template>
 <div class="container">
   首页内容
-  <nuxt-link to="/:detail">
-    <div class="content-box"></div>
-  </nuxt-link>
+  <div class="content-box" @click="goDetail"></div>
 </div>
 </template>
 
@@ -17,7 +15,11 @@ export default {
   },
   watch: {},
   computed: {},
-  methods: {},
+  methods: {
+    goDetail(){
+      this.$router.push({ path:'/detail', query: { id: 123 } })
+    }
+  },
   created() {},
   mounted() {}
 };
