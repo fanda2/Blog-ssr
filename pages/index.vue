@@ -7,16 +7,18 @@
         </div>
          <div class="right-menu">
           <ul class="menu-clumn">
-            <li>主页</li>
-            <li>关于</li>
-            <li>工具</li>
+            <li><nuxt-link class="link-btn" to="/">主页</nuxt-link></li>
+            <li><nuxt-link class="link-btn" to="/about">关于</nuxt-link></li>
+            <li><nuxt-link class="link-btn" to="/tool">工具</nuxt-link></li>
           </ul>
           <div class="logo-box">登录</div>
          </div>     
       </div>
     </div>
     <div class="main-box">
-      <div class="inner-main wrap1"></div>
+      <div class="inner-main wrap1">
+        <nuxt-child></nuxt-child>
+      </div>
     </div>
     <div class="footer-box">
       <div class="inner-footer wrap1"></div>
@@ -107,5 +109,8 @@ export default {
   border-top: 1px solid #ccc;
 }
 
-
+.link-btn{
+  color: #fff;
+  text-decoration: none;
+}
 </style>
