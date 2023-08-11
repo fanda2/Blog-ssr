@@ -1,4 +1,5 @@
 <template>
+<!-- 文字显示组件 -->
 <div class="text-centent">
   <div class="text">
     <span>Fanda Blog</span>
