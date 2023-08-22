@@ -7,7 +7,7 @@
   </div>
   <div class="page-right">
     <RightText/>
-    <RightClock/>
+    <RightClock bgcolor="#5ba585"/>
   </div>
 </div>
 </template>
