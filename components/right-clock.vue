@@ -32,61 +32,26 @@
         </div>
 
         <div class="digit hours">
-          <!-- <div class="segment"></div>
-          <div class="segment"></div>
-          <div class="segment"></div>
-          <div class="segment"></div>
-          <div class="segment"></div>
-          <div class="segment"></div>
-          <div class="segment"></div> -->
           <div v-for="(item,index) in 7" :key="index" :class="{'segment':true,'on':digitSegments[twoNum].indexOf(index+1)!==-1}"></div>
         </div>
 
         <div class="separator"></div>
 
         <div class="digit minutes">
-          <!-- <div class="segment"></div>
-          <div class="segment"></div>
-          <div class="segment"></div>
-          <div class="segment"></div>
-          <div class="segment"></div>
-          <div class="segment"></div>
-          <div class="segment"></div> -->
           <div v-for="(item,index) in 7" :key="index" :class="{'segment':true,'on':digitSegments[threeNum].indexOf(index+1)!==-1}"></div>
         </div>
 
         <div class="digit minutes">
-          <!-- <div class="segment"></div>
-          <div class="segment"></div>
-          <div class="segment"></div>
-          <div class="segment"></div>
-          <div class="segment"></div>
-          <div class="segment"></div>
-          <div class="segment"></div> -->
           <div v-for="(item,index) in 7" :key="index" :class="{'segment':true,'on':digitSegments[fourNum].indexOf(index+1)!==-1 }"></div>
         </div>
 
         <div class="separator"></div>
 
         <div class="digit seconds">
-          <!-- <div class="segment"></div>
-          <div class="segment"></div>
-          <div class="segment"></div>
-          <div class="segment"></div>
-          <div class="segment"></div>
-          <div class="segment"></div>
-          <div class="segment"></div> -->
           <div v-for="(item,index) in 7" :key="index" :class="{'segment':true,'on':digitSegments[fiveNum].indexOf(index+1)!==-1 }"></div>
         </div>
 
         <div class="digit seconds">
-          <!-- <div class="segment"></div>
-          <div class="segment"></div>
-          <div class="segment"></div>
-          <div class="segment"></div>
-          <div class="segment"></div>
-          <div class="segment"></div>
-          <div class="segment"></div> -->
           <div v-for="(item,index) in 7" :key="index" :class="{'segment':true,'on':digitSegments[sixNum].indexOf(index+1)!==-1 }"></div>
         </div>
       </div>
@@ -96,7 +61,6 @@
       <div class="calendar-left">
         <div class="ico-box">
           <img :src="monthIcoUrl" alt="月份图标" />
-          <!-- <img src="http://wew.fjtbkyc.net/images/date1.png" alt=""> -->
         </div>
         <div class="date-box">{{ showDate }}</div>
       </div>
