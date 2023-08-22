@@ -1,9 +1,9 @@
 <template>
   <div class="clock-box">
     <!-- 不同时钟 -->
-    <div class="ordinary-clock">
+    <div v-if="clockStyle == 'ordinaryClock'" class="ordinary-clock">
       <!-- 时钟 -->
-      <div v-if="clockStyle == 'ordinaryClock'" class="clock" :style="styleVar">
+      <div class="clock" :style="styleVar">
         <!-- 内圈 -->
         <div class="innerBorder">
           <!-- 时钟刻度 -->
@@ -25,7 +25,72 @@
       </div>
     </div>
     <!-- 数字时钟 -->
-    <div v-if="clockStyle == 'digitalClock'" class="digital-clock"></div>
+    <div v-if="clockStyle == 'digitalClock'" class="digital-clock">
+      <div class="clock">
+        <div class="digit hours">
+          <div v-for="(item,index) in 7" :key="index" :class="{'segment':true,'on':digitSegments[oneNum].indexOf(index+1)!==-1 }"></div>
+        </div>
+
+        <div class="digit hours">
+          <!-- <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div> -->
+          <div v-for="(item,index) in 7" :key="index" :class="{'segment':true,'on':digitSegments[twoNum].indexOf(index+1)!==-1}"></div>
+        </div>
+
+        <div class="separator"></div>
+
+        <div class="digit minutes">
+          <!-- <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div> -->
+          <div v-for="(item,index) in 7" :key="index" :class="{'segment':true,'on':digitSegments[threeNum].indexOf(index+1)!==-1}"></div>
+        </div>
+
+        <div class="digit minutes">
+          <!-- <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div> -->
+          <div v-for="(item,index) in 7" :key="index" :class="{'segment':true,'on':digitSegments[fourNum].indexOf(index+1)!==-1 }"></div>
+        </div>
+
+        <div class="separator"></div>
+
+        <div class="digit seconds">
+          <!-- <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div> -->
+          <div v-for="(item,index) in 7" :key="index" :class="{'segment':true,'on':digitSegments[fiveNum].indexOf(index+1)!==-1 }"></div>
+        </div>
+
+        <div class="digit seconds">
+          <!-- <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div> -->
+          <div v-for="(item,index) in 7" :key="index" :class="{'segment':true,'on':digitSegments[sixNum].indexOf(index+1)!==-1 }"></div>
+        </div>
+      </div>
+    </div>
     <!-- 日历信息展示 展示阳历和阴历-->
     <div class="calendar">
       <div class="calendar-left">
@@ -40,7 +105,7 @@
       </div>
     </div>
     <!-- 根据时间展示的标语 -->
-    <div class="motto"></div>
+    <div class="motto">时光荏苒，珍惜眼前活在当下，过好现在的每一天</div>
   </div>
 </template>
 
@@ -51,7 +116,8 @@ export default {
   props: {
     //时钟类型展示，有数字时钟digitalClock 和 ordinaryClock
     clockStyle: {
-      default: "ordinaryClock",
+      // default: "ordinaryClock",
+      default: "digitalClock",
     },
     //时钟背景大小
     bgsize: {
@@ -75,51 +141,37 @@ export default {
       year: 0,
       month: 0,
       day: 0,
-
-      //图标数据
-      monthIcoList: [
-        "http://wew.fjtbkyc.net/images/date1.png",
-        "http://wew.fjtbkyc.net/images/date2.png",
-        "http://wew.fjtbkyc.net/images/date3.png",
-        "http://wew.fjtbkyc.net/images/date4.png",
-        "http://wew.fjtbkyc.net/images/date5.png",
-        "http://wew.fjtbkyc.net/images/date6.png",
-        "http://wew.fjtbkyc.net/images/date7.png",
-        "http://wew.fjtbkyc.net/images/date8.png",
-        "http://wew.fjtbkyc.net/images/date9.png",
-        "http://wew.fjtbkyc.net/images/date10.png",
-        "http://wew.fjtbkyc.net/images/date11.png",
-        "http://wew.fjtbkyc.net/images/date12.png",
-        "http://wew.fjtbkyc.net/images/date13.png",
-        "http://wew.fjtbkyc.net/images/date14.png",
-        "http://wew.fjtbkyc.net/images/date15.png",
-        "http://wew.fjtbkyc.net/images/date16.png",
-        "http://wew.fjtbkyc.net/images/date17.png",
-        "http://wew.fjtbkyc.net/images/date18.png",
-        "http://wew.fjtbkyc.net/images/date19.png",
-        "http://wew.fjtbkyc.net/images/date20.png",
-        "http://wew.fjtbkyc.net/images/date21.png",
-        "http://wew.fjtbkyc.net/images/date22.png",
-        "http://wew.fjtbkyc.net/images/date23.png",
-        "http://wew.fjtbkyc.net/images/date24.png",
-        "http://wew.fjtbkyc.net/images/date25.png",
-        "http://wew.fjtbkyc.net/images/date26.png",
-        "http://wew.fjtbkyc.net/images/date27.png",
-        "http://wew.fjtbkyc.net/images/date28.png",
-        "http://wew.fjtbkyc.net/images/date29.png",
-        "http://wew.fjtbkyc.net/images/date30.png",
-        "http://wew.fjtbkyc.net/images/date31.png",
-      ],
       monthIcoUrl: "",
 
       //展示年月日
       showDate: "",
       showChineseDate: "",
+
+      //用于LED时间显示的数组，每个数组代表展示的数字
+      digitSegments: [
+        [1, 2, 3, 4, 5, 6],
+        [2, 3],
+        [1, 2, 7, 5, 4],
+        [1, 2, 7, 3, 4],
+        [6, 7, 2, 3],
+        [1, 6, 7, 3, 4],
+        [1, 6, 5, 4, 3, 7],
+        [1, 2, 3],
+        [1, 2, 3, 4, 5, 6, 7],
+        [1, 2, 7, 3, 6],
+      ],
+      //数组
+      oneNum:0,
+      twoNum:0,
+      threeNum:0,
+      fourNum:0,
+      fiveNum:0,
+      sixNum:0,
     };
   },
   watch: {
     day(newVal, oldVal) {
-      this.monthIcoUrl = this.monthIcoList[newVal - 1];
+      this.monthIcoUrl = `http://wew.fjtbkyc.net/images/date${newVal}.png`;
     },
   },
   computed: {
@@ -143,12 +195,16 @@ export default {
       this.month = date.getMonth() + 1;
       this.day = date.getDate();
 
-      document.getElementsByClassName("hourhand")[0].style.transform =
-        "rotate(" + (this.hour / 24) * 360 + "deg)";
-      document.getElementsByClassName("minhand")[0].style.transform =
-        "rotate(" + (this.minute / 60) * 360 + "deg)";
-      document.getElementsByClassName("sechand")[0].style.transform =
-        "rotate(" + (this.second / 60) * 360 + "deg)";
+      if (this.clockStyle === "ordinaryClock") {
+        document.getElementsByClassName("hourhand")[0].style.transform =
+          "rotate(" + (this.hour / 24) * 360 + "deg)";
+        document.getElementsByClassName("minhand")[0].style.transform =
+          "rotate(" + (this.minute / 60) * 360 + "deg)";
+        document.getElementsByClassName("sechand")[0].style.transform =
+          "rotate(" + (this.second / 60) * 360 + "deg)";
+      }else{
+        this.setNumber();
+      }
     },
 
     //用户获取当前时间的农历计算，
@@ -160,12 +216,22 @@ export default {
       let chineseDate = getLunar(this.year, this.month, this.day);
       this.showChineseDate = chineseDate.lunarYear + " " + chineseDate.dateStr;
     },
+
+    //计算显示数字
+    setNumber(){
+      this.oneNum=Math.floor(this.hour/10);
+      this.twoNum=this.hour%10;
+      this.threeNum=Math.floor(this.minute/10);
+      this.fourNum=this.minute%10;
+      this.fiveNum=Math.floor(this.second/10);
+      this.sixNum=this.second%10;
+    }
   },
   created() {},
   mounted() {
     this.currentTime();
     // 定时校准
-    setInterval(this.currentTime, 1000);
+    this.timer = setInterval(this.currentTime, 1000);
     this.getCurrentDate();
   },
   //页面销毁时清空定时器
@@ -208,14 +274,119 @@ export default {
 /* 数字展示时钟 */
 .digital-clock {
   width: 100%;
-  height: 60px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  .clock {
+    height: 120px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .digit {
+    width: 30px;
+    height: 70px;
+    margin: 0 3px;
+    position: relative;
+    display: inline-block;
+  }
+
+  .digit .segment {
+    background: #376350;
+    border-radius: 4px;
+    position: absolute;
+    opacity: 0.15;
+    transition: opacity 0.2s;
+    -webkit-transition: opacity 0.2s;
+    -ms-transition: opacity 0.2s;
+    -moz-transition: opacity 0.2s;
+    -o-transition: opacity 0.2s;
+  }
+
+  .digit .segment.on,
+  .separator {
+    opacity: 1;
+    box-shadow: 0 0 5px rgb(91, 165, 133, 0.04);
+    transition: opacity 0s;
+    -webkit-transition: opacity 0s;
+    -ms-transition: opacity 0s;
+    -moz-transition: opacity 0s;
+    -o-transition: opacity 0s;
+  }
+
+  .separator {
+    width: 10px;
+    height: 10px;
+    background: #376350;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    top: -30px;
+  }
+
+  .digit .segment:nth-child(1) {
+    top: 4px;
+    left: 5px;
+    right: 5px;
+    height: 6px;
+  }
+
+  .digit .segment:nth-child(2) {
+    top: 10px;
+    right: 0px;
+    width: 6px;
+    height: 75px;
+    height: calc(50% - 10px);
+  }
+
+  .digit .segment:nth-child(3) {
+    bottom: 8px;
+    right: 0px;
+    width: 6px;
+    height: 75px;
+    height: calc(50% - 10px);
+  }
+
+  .digit .segment:nth-child(4) {
+    bottom: 4px;
+    right: 6px;
+    height: 6px;
+    left: 5px;
+  }
+
+  .digit .segment:nth-child(5) {
+    bottom: 8px;
+    left: 0px;
+    width: 6px;
+    height: 75px;
+    height: calc(50% - 10px);
+  }
+
+  .digit .segment:nth-child(6) {
+    top: 10px;
+    left: 0px;
+    width: 6px;
+    height: 75px;
+    height: calc(50% - 10px);
+  }
+
+  .digit .segment:nth-child(7) {
+    bottom: 95px;
+    bottom: calc(50% - 5px);
+    right: 6px;
+    left: 6px;
+    height: 6px;
+  }
 }
 
 /* 根据时间展示不同标语 */
 .motto {
   width: 100%;
   height: 100px;
-  background: pink;
+  background: #9dc9b6;
+  border-radius: 6px;
+  padding: 5px;
+  box-sizing: border-box;
 }
 
 /* 普通时钟设置样式 */
@@ -339,31 +510,31 @@ export default {
 }
 
 /* 日历展示样式 */
-.calendar{
+.calendar {
   display: flex;
   justify-content: space-between;
   height: 50px;
   font-size: 14px;
   color: #333;
-  .calendar-left{
+  .calendar-left {
     width: 55%;
     line-height: 50px;
     display: flex;
-    .ico-box{
+    .ico-box {
       width: 40px;
       height: 50px;
       display: flex;
       justify-content: center;
       align-items: center;
-      img{
+      img {
         width: 30px;
         height: 30px;
       }
     }
   }
-  .calendar-right{
-     width: 40%;
-     line-height: 50px;
+  .calendar-right {
+    width: 40%;
+    line-height: 50px;
   }
 }
 </style>
