@@ -7,14 +7,15 @@
         <!-- 内圈 -->
         <div class="innerBorder">
           <!-- 时钟刻度 -->
-          <div class="scale mark1"></div>
+          <div v-for="(item,index) in 12" :key="index"  :class="classObj(index)"></div>
+          <!-- <div class="scale mark1"></div>
           <div class="scale mark2"></div>
           <div class="scale mark3"></div>
           <div class="scale mark4"></div>
           <div class="scale mark5"></div>
           <div class="scale mark6"></div>
           <div class="scale mark7"></div>
-          <div class="scale mark8"></div>
+          <div class="scale mark8"></div> -->
         </div>
         <!-- 内圈波浪 -->
         <div class="wave"></div>
@@ -143,7 +144,10 @@ export default {
       return {
         "--clock-size": this.bgsize + "px",
         "--clock-bgcolor": this.bgcolor,
-        "--length-log2E": (this.bgsize - 10) / 2 / Math.LOG2E + "px",
+        "--length-log2E": (this.bgsize) /2 / Math.LOG2E + "px",
+
+        "--length-log1": (this.bgsize-20) /2 * Math.sin(30*Math.PI/180) + "px",
+        "--length-log2": (this.bgsize-20) /2 * Math.sin(60*Math.PI/180) + "px",
       };
     },
   },
@@ -160,15 +164,26 @@ export default {
       this.day = date.getDate();
 
       if (this.clockStyle === "ordinaryClock") {
+        // 时针
         document.getElementsByClassName("hourhand")[0].style.transform =
-          "rotate(" + (this.hour / 24) * 360 + "deg)";
+          "rotate(" + ((this.hour*30)+(this.minute/2))+ "deg)";
+        //分针
         document.getElementsByClassName("minhand")[0].style.transform =
-          "rotate(" + (this.minute / 60) * 360 + "deg)";
+          "rotate(" + ((this.minute*6)+(this.second/10)) + "deg)";
+        //秒针
         document.getElementsByClassName("sechand")[0].style.transform =
-          "rotate(" + (this.second / 60) * 360 + "deg)";
+          "rotate(" +this.second*6 + "deg)";
       }else{
         this.setNumber();
       }
+    },
+
+    //动态返回类名
+    classObj(index){
+     let str='scale';
+     let val=index*1+1;
+     str=str+" "+'mark'+val;
+     return str;
     },
 
     //用户获取当前时间的农历计算，
@@ -382,45 +397,67 @@ export default {
     -1px -1px 1px var(--clock-bgcolor) inset;
   border-radius: 1px;
 }
-/* 设置小刻度位置 */
+/* 设置小刻度位置,表盘配置 */
 .mark1 {
   left: calc(50% - 1px);
   top: 2px;
 }
 .mark2 {
-  transform: rotate(45deg);
-  left: calc(50% + var(--length-log2E));
-  top: calc(50% - var(--length-log2E));
+  transform: rotate(30deg);
+  left: calc(50% + var(--length-log1));
+  top: calc(50% - var(--length-log2));
 }
 .mark3 {
-  transform: rotate(90deg);
-  left: calc(100% - 7px);
-  top: calc(50% - 3px);
+  transform: rotate(60deg);
+   left: calc(50% + var(--length-log2));
+  top: calc(50% - var(--length-log1));
 }
 .mark4 {
-  transform: rotate(135deg);
-  left: calc(50% + var(--length-log2E) - 5px);
-  top: calc(50% + var(--length-log2E) - 5px);
+  transform: rotate(90deg);
+    left: calc(100% - 5px);
+    top: calc(50%);
 }
 .mark5 {
-  left: calc(50% - 1px);
-  bottom: 2px;
+  transform: rotate(120deg);
+  left: calc(50% + var(--length-log2) - 1px);
+  top: calc(50% + var(--length-log1) - 1px);
 }
 .mark6 {
-  transform: rotate(45deg);
-  left: calc(50% - var(--length-log2E) + 5px);
-  top: calc(50% + var(--length-log2E) - 5px);
+  transform: rotate(150deg);
+  left: calc(50% + var(--length-log1) - 1px);
+  top: calc(50% + var(--length-log2) - 2px);
 }
 .mark7 {
-  transform: rotate(90deg);
-  left: 2px;
-  top: calc(50% - 3px);
+  // transform: rotate(0deg);
+  left: calc(50% + 1px);
+  top: calc(100% - 7px);
 }
 .mark8 {
-  transform: rotate(135deg);
-  left: calc(50% - var(--length-log2E));
-  top: calc(50% - var(--length-log2E));
+  transform: rotate(30deg);
+  left: calc(50% - var(--length-log1) + 1px);
+  top: calc(50% + var(--length-log2) - 1px);
 }
+.mark9 {
+  transform: rotate(60deg);
+  left: calc(50% - var(--length-log2));
+  top: calc(50% + var(--length-log1));
+}
+.mark10 {
+  transform: rotate(90deg);
+  left: 4px;
+  top: calc(50% - 1px);
+}
+.mark11 {
+  transform: rotate(120deg);
+  left: calc(50% - var(--length-log2));
+  top: calc(50% - var(--length-log1));
+}
+.mark12 {
+  transform: rotate(150deg);
+  left: calc(50% - var(--length-log1));
+  top: calc(50% - var(--length-log2));
+}
+
 /* 中间波浪 */
 .wave {
   width: 30%;
