@@ -9,8 +9,9 @@
          <div class="right-menu">
           <ul class="menu-clumn">
             <li><nuxt-link class="link-btn" to="/">主页</nuxt-link></li>
-            <li><nuxt-link class="link-btn" to="/about">关于</nuxt-link></li>
+             <li><nuxt-link class="link-btn" to="/file">归档</nuxt-link></li>
             <li><nuxt-link class="link-btn" to="/tool">工具</nuxt-link></li>
+            <li><nuxt-link class="link-btn" to="/about">关于</nuxt-link></li>
           </ul>
           <div class="logo-box">登录</div>
          </div>     
