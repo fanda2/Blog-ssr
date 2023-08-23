@@ -81,6 +81,8 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+  border-radius: 6px;
   img {
     height: 100%;
     object-fit: cover;

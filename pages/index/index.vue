@@ -1,9 +1,23 @@
 <template>
 <div class="page-content">
   <div class="page-left">
-    <div v-for="(item) in postListData" :key="item.id" @click="goDetail(item.id)">
-      <Table :postInfo="item"/>
-    </div>
+     <div class="post-list">
+       <div v-for="(item) in postListData" :key="item.id" @click="goDetail(item.id)">
+          <Table :postInfo="item"/>
+        </div>
+     </div>
+     <div class="pagination">
+       <Pagination
+          :total="total"
+          :current="curretnPage"
+          :page-size="queryInfo.size"
+          :show-total="true"
+          :show-sizer="true"
+          @on-change="handlePageChange"
+          @on-page-size-change="handlePageSizeChange"
+          :page-size-opts="[5, 10, 20, 30]"
+       />
+     </div>
   </div>
   <div class="page-right">
     <RightText/>
@@ -13,8 +27,13 @@
 </template>
 
 <script>
+import Pagination from '../../components/pagination/pagination';
+import RightClock from '../../components/right-clock';
+import RightText from '../../components/right-text';
+import Table from '../../components/table';
+
 export default {
-  components: {},
+  components: {RightClock,RightText,Table,Pagination},
   props: {},
   data() {
     return {
@@ -41,7 +60,15 @@ export default {
          countRead:1021,
          countComment:11,
         }
-      ]
+      ],
+      //分页数据
+      queryInfo:{
+        page:1,
+        size:5
+      },
+      total:0,
+      curretnPage:1,
+
     };
   },
   watch: {},
@@ -49,12 +76,27 @@ export default {
   methods: {
     goDetail(postId){
       this.$router.push({ path:'/detail', query: { id: postId } })
-    }
+    },
+     // 页码变更
+    handlePageChange(page) {
+      console.log("当前页码：" + page);
+    },
+    // 每页条数变化
+    handlePageSizeChange(pageSize) {
+      console.log("每页条数：" + pageSize);
+    },
   },
   created() {},
-  mounted() {}
+  mounted() {
+    this.total=2; 
+    //每次进入页面从缓存中去查看是否有分页记录
+    this.queryInfo.page=sessionStorage.getItem("currentPage")? this.queryInfo.size:sessionStorage.getItem("currentPage")*1;
+    this.queryInfo.size=sessionStorage.getItem("currentSize")? this.queryInfo.size:sessionStorage.getItem("currentSize")*1;
+  }
 };
 </script>
-<style scoped>
-
+<style lang="less" scoped>
+.pagination{
+  padding: 4px 10px;
+}
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="page-content">
     <div class="page-left">
-      <div class="back-btn">&lt; 返回上一级</div>
+      <div class="back-btn" @click="goBack">&lt; 返回上一级</div>
       <div class="post-content">
         <div class="post-title">{{ postDetail.title }}</div>
         <!-- 文章数据展示，包含阅读量，评论数，发布时间，发布作者  {{ postDetail.createTime }}-->
@@ -73,7 +73,12 @@ export default {
   props: {},
   watch: {},
   computed: {},
-  methods: {},
+  methods: {
+    //点击返回上一级菜单页面
+    goBack(){
+      history.back();
+    }
+  },
   created() {},
   mounted() {
     // 获取到跳转ID
