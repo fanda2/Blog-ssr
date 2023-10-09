@@ -8,14 +8,6 @@
         <div class="innerBorder">
           <!-- 时钟刻度 -->
           <div v-for="(item,index) in 12" :key="index"  :class="classObj(index)"></div>
-          <!-- <div class="scale mark1"></div>
-          <div class="scale mark2"></div>
-          <div class="scale mark3"></div>
-          <div class="scale mark4"></div>
-          <div class="scale mark5"></div>
-          <div class="scale mark6"></div>
-          <div class="scale mark7"></div>
-          <div class="scale mark8"></div> -->
         </div>
         <!-- 内圈波浪 -->
         <div class="wave"></div>

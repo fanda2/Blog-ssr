@@ -1,11 +1,10 @@
 <template>
 <div class="container">
-  <div class="page-left">
-     <div class="msg-card"></div>
-     <div class="about-more"></div>
+  <div class="avatar">
+    我的个人系信息
   </div>
-  <div class="page-right">
-    
+  <div class="link">
+    各个平台超链接
   </div>
 </div>
 </template>
@@ -25,5 +24,5 @@ export default {
   mounted() {}
 };
 </script>
-<style scoped>
-</style>  
+<style lang="less" scoped>
+</style>
